@@ -1,28 +1,69 @@
 <%-- 
     Document   : index
-    Created on : 22/10/2016, 15:33:22
+    Created on : 12/10/2016, 21:54:07
     Author     : ADM
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="avicultores.*" %>
-<%@page import="avicultores.AvicultorDAO" %>
-<%@page import="historico_avicultor.*" %>
-<%@page import="historico_avicultor.Historico_AvicultorDAO" %>
-
+<!--
+<1%@page contentType="text/html" pageEncoding="UTF-8"%>
+<1%@page import="teste.*"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro Avicultor</title>
+        <title>Teste</title>
+    </head>
+    <body>
+        <!-- 
+        A parte do header está sendo importado da pagina include.jsp 
+        utilizando os metodos de Include.
+        
+        qualquer pagina que você queira que apareça essa mensagem pode utilizar 
+        o include 
+        <1%@include file="include.jsp" %>
+        
+        -->
+        <!--
+        <header>
+            <1%@include file="include.jsp" %>
+        </header>
+        <div align="center">
+            <form action="Salvar_Teste_Servlet" method="post">
+                <label>Código Teste:</label>
+                <input name="codigo_teste">
+                <br>
+                <label>Nome Teste:</label>
+                <input name="nome_teste">
+                <br>
+                <input type="submit" value="testar">
+            </form>
+        </div>
+    </body>
+</html>
+-->
+
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Home Avicultor</title>
         <link rel="stylesheet" href="normalize.css" /> 
         <style>
             @import 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700';
         </style>
-        <link rel="stylesheet" href="home.css" /> 
-    </head>
+        <link rel="stylesheet" href="estilos.css" /> 
+<%@page import="avicultores.*" %>
+<%@page import="avicultores.AvicultorDAO" %>
+<%@page import="historico_avicultor.*" %>
+<%@page import="historico_avicultor.Historico_AvicultorDAO" %>
+<%@page import="eletricista.*" %>
+<%@page import="eletricista.EletricistaDAO" %>
+<%@page import="historico_eletricista.Historico_EletricistaDAO" %>
+<%@page import="historico_eletricista.*" %>
 
+    </head>
     <body>
         <div class="header">
             <div class="linha">
@@ -33,23 +74,22 @@
                     <div class="coluna col8">
                         <nav>
                             <ul class="menu inline sem-marcador">
-                                <li><a href="pagina_escolha_cliente.jsp" target="_blank" >Login &raquo;</a></li>
-                                <li><a href="index.jsp" target="_blank" >Home &raquo;</a></li>
-                                <li><a href="listar_historico_avicultor.jsp" target="_blank" >Histórico &raquo;</a></li>
-                                <li><a href="listar_avicultor.jsp" target="_blank" >Clientes &raquo;</a></li>
-                                <li><a href="pendencia_avicultor.jsp" target="_blank" >Pendência &raquo;</a></li>
-
+                               <!-- <li> <a href="index.jsp" target="_blank">Home &raquo;</a></li> -->
+                               <!--<li> <a href="pagina_escolha_cliente.jsp">Troca de Usuário &raquo;</a></li> -->
+                               <li> <a href="pendencia_avicultor.jsp">Pendências &raquo;</a></li>
+                                <li> <a href="listar_historico_avicultor.jsp">Histórico &raquo;</a></li>
+                                <li><a href="pagina_saida.jsp" target="_blank">Sair &raquo;</a></li>
                             </ul>
                         </nav>
                     </div>
                 </header>
             </div>
         </div>
-        <section>
-            <div class="coluna col5 sidebar">
-                <h3>Cadastro de Avicultor</h3>
-                <img src="img/pessoas1.jpeg" alt="imagem de pessoas" />
-                <ul class="sem-marcador sem-padding noticias">
+        <div class="linha">
+            <section>
+                <div class="coluna col3 sidebar">
+                    <img src="img/TRABALHO 2.png" alt="imagem logo"/>
+                    <ul class="sem-marcador sem-padding noticias">
                     <li><u><strong>Elefra O.S</strong>  </u></li>
                     <li><strong>Endereço:</strong></li>
                     <li>Rua das Camélias, 123</li>
@@ -62,106 +102,50 @@
                     <li>e-mail: <strong>elefra@elefra.com</strong></li>
                     <li>Facebook: <strong>elefra.facebook</strong></li>                                           
                 </ul>
-            </div>
-            <div  class="coluna col7 contato">
-                <h2>Preencha o formulário:</h2>
-                <h4 style="color:#FF0000">Atenção !!! preencha os campos sem as pontuações (ç ~ ´)</h4>
-                <form action="Salvar_avicultor_Servlet" method="post"> 
-                    <label>Codigo:</label>
-                    <input placeholder="verificar codigo" name="codigo_avicultor">
-                    <label>Nome:</label>
-                    <input name="nome_avicultor">
-                    <label>Login/Usuário</label>
-                    <input placeholder="escreva seu nome de login/usuário até 15 letras" name="login_usuario_avicultor">
-                    
-                    <!--
-                    <label>Cliente:</label>
-                    <select style="width: 300px; height: 30px;" name="cliente">
-                        <option value="" style="color: #C0C0C0">Escolha o Cliente</option>
-                        <option value="eletricista" style="color: #000000">eletricista</option>
-                        <option value="avicultor" style="color: #000000">avicultor</option>
-                    </select>
-                    -->
-                    <br>
-                    <br>
-                    <label>E-mail:</label>
-                    <input name="email_avicultor">
-                    <label>Telefone Residêncial:</label>
-                    <input name="telefone_avicultor">
-                    <label>Telefone Celular:</label>
-                    <input name="celular_avicultor">
-                    <label>Senha:</label>
-                    <input name="senha_avicultor" type="password" >
-                    <label>Cidade:</label>
-                    <input name="nome_cidade">
-                    <label>Estado:</label>
-                    <select name="estado">
-                        <option value="AC">AC</option>
-                        <option value="AL">AL</option>
-                        <option value="AP">AP</option>
-                        <option value="AM">AM</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="DF">DF</option>
-                        <option value="ES">ES</option>
-                        <option value="GO">GO</option>
-                        <option value="MA">MA</option>
-                        <option value="MT">MT</option>
-                        <option value="MS">MS</option>
-                        <option value="MG">MG</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="PR">PR</option>
-                        <option value="PE">PE</option>
-                        <option value="PI">PI</option>
-                        <option value="RJ">RJ</option>
-                        <option value="RN">RN</option>
-                        <option value="RS">RS</option>
-                        <option value="RO">RO</option>
-                        <option value="RR">RR</option>
-                        <option value="SC">SC</option>
-                        <option value="SP">SP</option>
-                        <option value="SE">SE</option>
-                        <option value="TO">TO</option>   
-                    </select>
-                    <label>Observação:</label>                       
-                    <textarea  name="observacao_avicultor" ></textarea>
-                    <input type="submit" class="botao" value="Salvar &raquo;" />
-                </form> 
-            </div>
-        </section>
+                </div>
+                <div class="coluna col9">
+                    <h2><em>Agilidade em suas tarefas conte conosco da Elefra</em></h2>
+                    <img src="img/ELETRICA.jpg" alt="imagem" />
+                    <p></p>
+                 <!--   <a href="clientes.html" class="botao">Verificar o que pode ser feito aqui &raquo;</a> -->
+                </div>
+            </section>
+        </div>
         <div class="conteudo-extra">
             <div class="linha">
-                <div class="coluna col7">
-                    <section>
-                        <h2>Atenção:</h2>
-                        <p>Analise todas as informações para efetuar o cadastro</p>
-                    </section>
-                </div>
-                <div class="coluna col5">
-                    <h3>Seja um novo cliente</h3>
-                    <ul class="sem-marcador sem-padding noticias">
-                        <li>
-                            <img src="img/pessoas2.jpg" alt="imagem pessoas ">
-                            <h4>Venha fazer parte de nossos clientes</h4>
-                            <p>Teremos sempre o privilégio de termos conosco</p>
-                        </li>
-                    </ul>
-
-                </div>
+                <section>
+                    <h2>Avisos</h2>
+                    <p>Neste site você pode analisar o quando pode ser útil para o auxílio de todo eletricista</p>
+                    <h2>O que você irá encontrar no Site ?</h2>
+                    <p>Tendo o melhor assistente para ajudar no que for preciso na organização das suas tarefas</p>
+                    <h2>Temas</h2>
+                    <p>Tendo como o propósito atender a sua necessidade de continuas melhoras no ramo de atuação</p>
+                </section>
             </div>
-            <div class="footer">
-                <div class="linha">
-                    <footer>
-                        <div class="coluna col12">
-                            <span>&copy; 2016 Elefra O.S gerenciador de tarefas </span>
-                        </div>
-                    </footer>
-                </div>
+            <div class="coluna col5">
+                <h3>Noticias</h3>
+                <ul class="sem-marcador sem-padding noticias">
+                    <li>
+                        <img src="img/imagem lanterna.jpg" alt="imagem lanterna" />
+                        <h4>Acompanhe as ultimas tendências</h4>
+                        <p>Surgindo no mercado um organizador de tarefas para eletricistas que 
+                            tenham como foco a manutenção de aviários na região sudoeste do Paraná.
+                            Para ser mais preciso no munícipio de Dois Vizinhos, onde, se concentram as maiores empresas 
+                            do ramo de aves da américa latina.
+                            <a href="">leia mais &raquo;</a></p>
+                    </li>
+                </ul>
             </div>
         </div>
-
+        <div class="footer">
+            <div class="linha">
+                <footer>
+                    <div class="coluna col12">
+                        <span>&copy; 2016 Elefra O.S gerenciador de tarefas </span>
+                    </div>
+                </footer>
+            </div>
+        </div>
     </body>
-
 </html>
 
